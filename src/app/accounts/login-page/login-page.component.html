@@ -1,0 +1,26 @@
+<div class="container login-container">
+
+  <div class="row">
+    <div class="col-md-6 login-form-2"> 
+      <h3>Log in to your account</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <input type="text" name="user_id" formControlName="user_id"  placeholder="Enter user id">
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" formControlName="password" placeholder="Enter password">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btnSubmit" value="Login" />
+        </div>
+        <div class="form-group">
+            <!-- <a href="#" class="ForgetPwd">Forget Password?</a> -->
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 login-form-1"> 
+        <h3>Have A Vision? Make The Right Decision!</h3>
+        <img class="voteImg" src="/assets/img/logoVote.png">
+    </div>
+
+  </div>
