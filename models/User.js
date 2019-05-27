@@ -19,7 +19,11 @@ var UserSchema = new mongoose.Schema({
         required: true
     },
     hash : String, 
-    salt : String 
+    salt : String,
+    is_voted : {
+        type: Boolean,
+        default: false
+     }
 });
 
 UserSchema.methods.setPassword = function(password) { 

@@ -7,6 +7,7 @@ mongoose.connect('mongodb://localhost/voting-management')
 
 var userRouter = require('./routes/user');
 var accountRouter = require('./routes/account');
+var candidateRouter = require('./routes/candidate');
 
 var app = express();
 
@@ -17,6 +18,7 @@ app.use('/', express.static(path.join(__dirname, 'dist/votingManagement')));
 app.use('/login', express.static(path.join(__dirname, 'dist/votingManagement')));
 // app.use('/api/user', userRouter);
 app.use('/api/user', userRouter);
+app.use('/api/candidate', candidateRouter);
 app.use('/api', accountRouter);
 
 // error handler
