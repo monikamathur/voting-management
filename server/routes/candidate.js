@@ -5,6 +5,21 @@ var Candidate = require('../models/Candidate');
 const { check, validationResult } = require('express-validator/check');
 var User = require('../models/User');
 
+router.get('/', (req, res, next) => {
+  
+  Candidate.find({},(err, candidate) => {
+    if (err) {
+      return res.status(400).send({
+        message: "Failed to add candidate."
+      });
+    }
+    else {
+      return res.status(201).send(candidate);
+    }
+  })
+  // User.create()
+});
+
 router.post('/', [
   check('candidate_id', 'sdfsdfsf').not().isEmpty(),
   check('candidate_name', 'sdfsdfsdf').not().isEmpty(),

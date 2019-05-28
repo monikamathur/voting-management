@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { RegistrationPageComponent } from './accounts/registration-page/registra
 import { CandidatesPageComponent } from './candidates/candidates-page/candidates-page.component';
 import { UserPageComponent } from './user/user-page/user-page.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { DashboardPageComponent } from './shared/dashboard-page/dashboard-page.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     LoginPageComponent,
     RegistrationPageComponent,
     CandidatesPageComponent,
-    UserPageComponent
+    UserPageComponent,
+    DashboardPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
   ],

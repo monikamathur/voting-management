@@ -1,0 +1,33 @@
+[
+    {
+        "candidate_id": "10001",
+        "candidate_name": "FaceBook",
+        "candidate_sign": "fb",
+        "candidate_party": "FaceBook"
+    },
+    {
+        "candidate_id": "10002",
+        "candidate_name": "Instagram",
+        "candidate_sign": "ig",
+        "candidate_party": "Instagram"
+    },
+    {
+        "candidate_id": "10003",
+        "candidate_name": "SnapChat",
+        "candidate_sign": "sc",
+        "candidate_party": "SnapChat"
+    },
+    {
+        "_id": "5ced08a388505e4b33a2cc54",
+        "candidate_id": "10004",
+        "candidate_name": "Twitter",
+        "candidate_sign": "tw",
+        "candidate_party": "Twitter"
+    },
+    {
+        "candidate_id": "10005",
+        "candidate_name": "WhatsApp",
+        "candidate_sign": "wa",
+        "candidate_party": "WhatsApp"
+    }
+]

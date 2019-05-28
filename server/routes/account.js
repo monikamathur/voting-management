@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('../models/User');
+var User = require('./../models/User');
 const { check, validationResult } = require('express-validator/check');
 let jwt = require('jsonwebtoken');
 const config = require('../config');
@@ -17,7 +17,9 @@ router.post('/login', (req, res) => {
       } 
       else { 
           if (user.validPassword(req.body.password)) { 
-            var token=jwt.sign({userId:user.id},config.secret);
+            var token=jwt.sign({userId:user.user_id, userType : user.user_type},config.secret,
+                { expiresIn: '24h'
+            });
             res.status(200).json({
                 user_id:user.user_id,
                 user_name:user.user_name,

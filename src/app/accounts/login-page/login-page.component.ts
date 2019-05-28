@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AccountService } from '../service/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -12,13 +14,23 @@ export class LoginPageComponent implements OnInit {
     user_id: new FormControl(''),
     password: new FormControl(''),
   });
-  constructor() { }
+  constructor(private accountService: AccountService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   login() {
+    this.router.navigate(['user']);
+
     console.log('login', this.loginForm.value);
+    this.accountService.login(this.loginForm.value).subscribe((data) => {
+      if (data && data['token']) {
+        localStorage.setItem('token', data['token']);
+        // this.router.navigate(['dashboard/user']);
+      }
+    });
   }
 
 }

@@ -5,9 +5,9 @@ mongoose.connect('mongodb://localhost/voting-management')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
-var userRouter = require('./routes/user');
-var accountRouter = require('./routes/account');
-var candidateRouter = require('./routes/candidate');
+var userRouter = require('./server/routes/user');
+var accountRouter = require('./server/routes/account');
+var candidateRouter = require('./server/routes/candidate');
 
 var app = express();
 
