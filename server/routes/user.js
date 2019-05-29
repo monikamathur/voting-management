@@ -35,4 +35,29 @@ router.post('/', [
   // User.create()
 });
 
+router.get('/:id', function(req, res, next) {
+  User.find({user_id : req.params.id}, function (err, post) {
+    console.log('post', post)
+    console.log('err', err)
+    if (err) {
+      return res.status(400).send({
+        message: "Can not find the user"
+      });
+    }
+      res.json(post);
+  });
+});
+
+router.get('/', function(req, res, next) {
+  User.find({user_type : 'customer'},{'user_name': true, 'user_id': true,'is_voted':true}, function (err, post) {
+    if (err) {
+      return res.status(400).send({
+        message: "No data found"
+      });
+    }
+      res.json(post);
+  });
+});
+
+
 module.exports = router;

@@ -11,8 +11,13 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getUser() {
+  public getUsers() {
     return this.httpClient.get(this.userApiURL);
   }
 
+  public getUser(id) {
+    debugger;
+    const url = `${this.userApiURL}/${id}`;
+    return this.httpClient.get(url);
+  }
 }

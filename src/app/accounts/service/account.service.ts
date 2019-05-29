@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONSTANTS } from '../../app.constants';
 import * as jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 export class AccountService {
   loginApiURL: any = APP_CONSTANTS.LOGIN_API;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   public login(data) {
     return this.httpClient.post(this.loginApiURL, data);
@@ -17,6 +18,7 @@ export class AccountService {
 
   public logout() {
     localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
   getToken(): string {
@@ -49,5 +51,10 @@ export class AccountService {
     let decoded = jwt_decode(token);
     if (decoded.userType === 'admin') return true;
     return false;
+  }
+
+  getTokenData(token?: string) : any{
+    if (!token) token = this.getToken();
+    return jwt_decode(token);
   }
 }

@@ -1,94 +1,27 @@
-<header>
-  <div class="container bg-info p-5 ">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">Features</a>
-        </div>
+
+<div class="container">
+  <div class="page-header">
+        <h1>User List </h1>
+  </div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Voted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userData">
+            <td>{{user?.user_name}}</td>
+            <td>{{user?.user_id}}</td>
+            <td>{{user?.is_voted}}</td>
+          </tr>
+        </tbody>
+      </table>
       </div>
-    </nav>
-  </div>
-</header>
-<!---->
-<main>
-<div class="container my-5">
-       <div class="card-body text-center">
-    <h4 class="card-title">Special title treatment</h4>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-  </div>
-    <div class="card">
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Candidate Name</th>
-                <th scope="col">Candidate Sign</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let candidate of candidatesData">
-                <th scope="row">1</th>
-                <td>{{candidate?.candidate_name}}</td>
-                <td><div class="avatar">
-                  <img class="rounded-circle" style="width:100%;" [src]="'assets/img/'+ candidate?.candidate_sign+'.png'" />
-                </div>
-              </td>
-                <td><a class="btn btn-sm btn-info" href="#"><i class="fas fa-info-circle"></i> Vote</a> </td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-    <!-- Large modal -->
-
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-          <div class="card-body text-center">
-            <h4 class="card-title">Special title treatment</h4>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-            <div class=" card col-8 offset-2 my-2 p-3">
-          <form>
-            <div class="form-group">
-              <label for="listname">List name</label>
-              <input type="text" class="form-control" name="listname" id="listname" placeholder="Enter your listname">
-            </div>
-            <div class="form-group">
-              <label for="datepicker">Deadline</label>
-              <input  type="text" class="form-control" name="datepicker" id="datepicker" placeholder="Pick up a date">
-            </div>
-            <div class="form-group">
-                                    <label for="datepicker">Add a list item</label>
-                <div class="input-group">
-
-                  <input type="text" class="form-control" placeholder="Add an item" aria-label="Search for...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button">Go!</button>
-                  </span>
-                </div>
-              </div>
-           <div class="form-group text-center">
-             <button type="submit" class="btn btn-block btn-primary">Sign in</button>
-          </div>
-        </form>
-    </div>
-    </div>
-  </div>
 </div>
-</div>
-</main>
-<!---->
-
-<!---->
-<footer >
-  <div class="container bg-info p-5">
-
-	</div>
-</footer>

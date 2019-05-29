@@ -17,10 +17,21 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
 
     if (!this.auth.isTokenExpired()) {
+      if(state.url == '/' || state.url == "/login"){
+        if(this.auth.isAdmin()){
+          this.router.navigate(['/candidate']);
+        }else{
+          this.router.navigate(['/vote']);
+        }
+       }
       return true;
     }
     if (this.auth.isTokenExpired()) {
-      this.router.navigate(['login']);
+      if(state.url == '/' || state.url == "/login"){
+        return true;
+      }else{
+        this.router.navigate(['login']);
+      }
       return false;
     }
   }

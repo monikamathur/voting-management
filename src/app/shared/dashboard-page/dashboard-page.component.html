@@ -1,45 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm p-3 mb-5 bg-white rounded" id="mainNav">
-   <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-  <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav navbar-sidenav shadow-sm p-3 mb-5 bg-white rounded">
-
-        <a class="nav-link navlogo text-center" href="index.php">
-          <img src="assets/img/logoVote.png">
-        </a>
-
-      <li class="nav-item">
-        <a class="nav-link sidefrst" href="index.php">
-          <span class="textside">Profile</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link sidesecnd" href="employee.php">
-          <span class="textside">Candidates</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link sidesthrd" href="clients.php">
-          <span class="textside">Vote</span>
-        </a>
-      </li>
-    </ul>
-    
-    <ul class="navbar-nav2 ml-auto">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome WaLia</a>
-          <ul class="dropdown-menu">
-              <li class="resflset"><a ><i class="fa fa-fw fa-cog"></i> Edit profile</a></li>
-              <li class="divider"></li>
-              <li class="resflset"><a ><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
-          </ul>
-      </li>
-    </ul>
-    
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" >Go Vote</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a  routerLink="/candidate" routerLinkActive="active"><span class="glyphicon glyphicon-comment"></span> Candidates</a></li>
+        <li ><a  routerLink="/user" routerLinkActive="active"><span class="glyphicon glyphicon-book"></span> Users</a></li>
+      </ul>
+       <div class="nav navbar-right">
+        <button type="button" (click)="logout()" class="btn btn-danger navbar-btn dropdown-toggle button-login" >Logout</button>
+       </div>
+    </div><!--/.nav-collapse -->
   </div>
-</nav>
-
-<div class="content-wrapper">
-<router-outlet></router-outlet>
 </div>
+<router-outlet></router-outlet>
+<div class="container">
+  <!-- FOOTER -->
+  <footer>
+    <p class="pull-right"><a> Go Votw</a></p>
+    <p>© 2019 · <a >Monika Mathur</a></p>
+  </footer>
+
+</div><!-- /.container -->

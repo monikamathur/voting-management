@@ -11,6 +11,8 @@ import { CandidatesPageComponent } from './candidates/candidates-page/candidates
 import { UserPageComponent } from './user/user-page/user-page.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DashboardPageComponent } from './shared/dashboard-page/dashboard-page.component';
+import { VoteComponent } from './vote/vote/vote.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { DashboardPageComponent } from './shared/dashboard-page/dashboard-page.c
     RegistrationPageComponent,
     CandidatesPageComponent,
     UserPageComponent,
-    DashboardPageComponent
+    DashboardPageComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { DashboardPageComponent } from './shared/dashboard-page/dashboard-page.c
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   exports: [
   ],

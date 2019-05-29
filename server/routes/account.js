@@ -23,12 +23,13 @@ router.post('/login', (req, res) => {
             res.status(200).json({
                 user_id:user.user_id,
                 user_name:user.user_name,
+                user_type: user.user_type,
                 token
             })
           } 
           else { 
               return res.status(400).send({ 
-                  message : "Wrong Password"
+                  message : "Invalid Password."
               }); 
           } 
       } 

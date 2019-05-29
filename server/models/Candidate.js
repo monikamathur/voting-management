@@ -13,21 +13,33 @@ var CandidateSchema = new mongoose.Schema({
         unique: false,
         trim: true
     },
-    candidate_sign:{
+    candidate_sign: {
         type: String,
         required: true,
         unique: true,
     },
-    candidate_party:{
+    candidate_party: {
         type: String,
         required: true,
         unique: true,
     },
-    candidate_vote:{
+    candidate_vote: {
         type: Number,
         default: 0
     }
-});
+},{ emitIndexErrors: true });
 
 var Candidate = mongoose.model('Candidate', CandidateSchema);
 module.exports = Candidate;
+
+var handleE11000 = function (error, res, next) {
+    if (error.name === 'MongoError' && error.code === 11000) {
+        next(new Error('There was a duplicate key error'));
+    } else {
+        next();
+    }
+};
+CandidateSchema.post('insertMany', handleE11000);
+CandidateSchema.post('save', handleE11000);
+CandidateSchema.post('update', handleE11000);
+CandidateSchema.post('findOneAndUpdate', handleE11000);

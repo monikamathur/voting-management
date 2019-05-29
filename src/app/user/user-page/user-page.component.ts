@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { CandidatesService } from '../../candidates/service/candidates.service';
-
+import { AccountService } from '../../accounts/service/account.service'
 import { from } from 'rxjs';
 @Component({
   selector: 'app-user-page',
@@ -10,26 +10,16 @@ import { from } from 'rxjs';
 })
 export class UserPageComponent implements OnInit {
 
-  constructor(private userService: UserService, private candidatesService: CandidatesService) { }
-  candidatesData: any;
+  constructor(private userService: UserService, private candidatesService: CandidatesService, private accountService: AccountService) { }
+  userData: any;
   ngOnInit() {
-    this.getCandidates();
+    this.getUsers();
   }
 
   getUsers() {
-    this.userService.getUser().subscribe((data) => {
+    this.userService.getUsers().subscribe((data) => {
+      this.userData =data;
     });
   }
-  getCandidates() {
-    this.candidatesService.getCandidates().subscribe((data) => {
-      this.candidatesData = data;
-    });
-  }
-
-  voteCandidates(candidate) {
-    this.candidatesService.voteCandidates(candidate).subscribe((data) => {
-     console.log('sdfsf');
-    });
-  }
-
+  
 }
