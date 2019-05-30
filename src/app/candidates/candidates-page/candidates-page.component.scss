@@ -1,0 +1,32 @@
+.card {
+    box-shadow: 0 0.0625rem 0.125rem 0 rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+
+    .card-header {
+      padding: 1rem 1.25rem;
+    margin-bottom: 0;
+    color: inherit;
+    background-color: #fff;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-bottom: 0;
+      }
+    }
+  
+
+    .table{
+        .rounded-circle{
+            width: 32px !important;
+        }
+    }
+    
+    .list-group {
+      box-shadow: none;
+    }
+  }
+  

@@ -1,25 +1,47 @@
-<div class="container login-container">
-
-  <div class="row">
-    <div class="col-md-6 login-form-2"> 
-      <h3>Log in to your account</h3>
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="form-group">
-          <input type="text" name="user_id" formControlName="user_id"  placeholder="Enter user id">
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row top-buffer">
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                  <h1>Login</h1>
+                  <p class="text-muted">Sign In to your account</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" autocomplete="username" required
+                      name="user_id" formControlName="user_id">
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" autocomplete="current-password"
+                      required name="password" formControlName="password">
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="submit" class="btn btn-primary px-4">Login</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+              <div class="card-body text-center">
+                <div>
+                  <h3>Have A Vision? Make The Right Decision!</h3>
+                  <img class="voteImg" src="/assets/img/logoVote.png">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <input type="password" name="password" formControlName="password" placeholder="Enter password">
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btnSubmit" value="Login" />
-        </div>
-        <div class="form-group">
-        </div>
-      </form>
+      </div>
     </div>
-    <div class="col-md-6 login-form-1"> 
-        <h3>Have A Vision? Make The Right Decision!</h3>
-        <img class="voteImg" src="/assets/img/logoVote.png">
-    </div>
-
-  </div>
+  </main>
+</div>

@@ -1,25 +1,64 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" >Go Vote</a>
+<div class="app">
+  <div class="app-sidebar ">
+    <div class="sidebar-header">
+      <svg class="avatar">
+        <use href="/assets/img/logoVote.png" />
+      </svg>
+      <div class="username">
+        <span>{{userData?.user_name}}</span>
+        <small>{{userData?.user_id}}</small>
+      </div>
     </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a  routerLink="/candidate" routerLinkActive="active"><span class="glyphicon glyphicon-comment"></span> Candidates</a></li>
-        <li ><a  routerLink="/user" routerLinkActive="active"><span class="glyphicon glyphicon-book"></span> Users</a></li>
+    <div id="sidebar-nav " class="sidebar-nav ">
+      <ul>
+        <li>
+          <a routerLink="/user">
+            <span class="sidebar-nav-icon fa fa-rocket"></span>
+            <span class="sidebar-nav-text">Voters</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/candidate">
+            <span class="sidebar-nav-icon fa fa-rocket"></span>
+            <span class="sidebar-nav-text">Candidates</span>
+          </a>
+        </li>
       </ul>
-       <div class="nav navbar-right">
-        <button type="button" (click)="logout()" class="btn btn-danger navbar-btn dropdown-toggle button-login" >Logout</button>
-       </div>
-    </div><!--/.nav-collapse -->
+
+
+      <hr>
+      <ul>
+        <li>
+          <a (click)=logout()>
+            <span class="sidebar-nav-icon fa fa-power-off"></span>
+            <span class="sidebar-nav-text">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="app-content">
+    <div class="content-header">
+
+      <nav class="navbar navbar-expand navbar-light bg-white shadow-sm p-3  bg-white rounded pb-2">
+        <div class="navbar-brand">
+          <button type="button" class="btn btn-sidebar" data-toggle="sidebar">
+            <i class="fa fa-bars"></i>
+          </button>
+          <span class="pr-2">Go Vote</span>
+          <a href="https://github.com/logiqsystem/admin4b" class="text-dark decoration-none" data-toggle="tooltip"
+            data-placement="right" title="Fork me on GitHub">
+            <i class="fa fa-github"></i>
+          </a>
+        </div>
+      </nav>
+
+
+
+      <!-- @@placeholder = breadcrumb -->
+    </div>
+    <div class="content-body">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
-<router-outlet></router-outlet>
-<div class="container">
-  <!-- FOOTER -->
-  <footer>
-    <p class="pull-right"><a> Go Votw</a></p>
-    <p>© 2019 · <a >Monika Mathur</a></p>
-  </footer>
-
-</div><!-- /.container -->

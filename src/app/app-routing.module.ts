@@ -9,8 +9,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginPageComponent,  canActivate: [AuthGuard] },
-  { path: '', component: LoginPageComponent,  canActivate: [AuthGuard] },
+  { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
   {
     path: '',
     component: DashboardPageComponent,

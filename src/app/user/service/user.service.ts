@@ -16,7 +16,6 @@ export class UserService {
   }
 
   public getUser(id) {
-    debugger;
     const url = `${this.userApiURL}/${id}`;
     return this.httpClient.get(url);
   }

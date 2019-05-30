@@ -18,9 +18,7 @@ router.post('/', [
   newUser.user_type = req.body.user_type;
   // call setPassword function to hash password 
   newUser.setPassword(req.body.password);
-  console.log(newUser)
   newUser.save((err, user) => {
-    console.log("user", user)
     if (err) {
       return res.status(400).send({
         message: "Failed to add user."
@@ -35,27 +33,25 @@ router.post('/', [
   // User.create()
 });
 
-router.get('/:id', function(req, res, next) {
-  User.find({user_id : req.params.id}, function (err, post) {
-    console.log('post', post)
-    console.log('err', err)
+router.get('/:id', function (req, res, next) {
+  User.find({ user_id: req.params.id }, function (err, post) {
     if (err) {
       return res.status(400).send({
         message: "Can not find the user"
       });
     }
-      res.json(post);
+    res.json(post);
   });
 });
 
-router.get('/', function(req, res, next) {
-  User.find({user_type : 'customer'},{'user_name': true, 'user_id': true,'is_voted':true}, function (err, post) {
+router.get('/', function (req, res, next) {
+  User.find({ user_type: 'customer' }, { 'user_name': true, 'user_id': true, 'is_voted': true }, function (err, post) {
     if (err) {
       return res.status(400).send({
         message: "No data found"
       });
     }
-      res.json(post);
+    res.json(post);
   });
 });
 

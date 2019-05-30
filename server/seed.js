@@ -12,16 +12,16 @@ async.forEachOf(userData, (value, callback) => {
     newUser.user_id = value.user_id;
     newUser.user_type = value.user_type;
     newUser.setPassword(value.password);
-    newUser.save( (err, res) => {
-        console.log("Number of documents inserted: " + res);
+    newUser.save((err, res) => {
+        console.log("inserted");
     })
-    
+
 }, err => {
     if (err) console.error(err.message);
     // configs is now a map of JSON data
 });
 
-Candidate.insertMany(candidateData, (err, res)=>{
+Candidate.insertMany(candidateData, (err, res) => {
     if (err) console.error(err.message);
-    console.log("Number of documents inserted: " + res);
+    console.log("inserted");
 })

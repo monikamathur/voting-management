@@ -53,7 +53,7 @@ export class AccountService {
     return false;
   }
 
-  getTokenData(token?: string) : any{
+  getTokenData(token?: string): any {
     if (!token) token = this.getToken();
     return jwt_decode(token);
   }

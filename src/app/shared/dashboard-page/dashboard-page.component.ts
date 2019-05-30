@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AccountService} from './../../accounts/service/account.service';
+import { AccountService } from './../../accounts/service/account.service';
 import { UserService } from '../../user/service/user.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserService } from '../../user/service/user.service';
 })
 export class DashboardPageComponent implements OnInit {
 
-  constructor(private accountService:AccountService, private userService: UserService) { }
+  constructor(private accountService: AccountService, private userService: UserService) { }
   userData;
   ngOnInit() {
     this.getUser();
@@ -17,12 +17,11 @@ export class DashboardPageComponent implements OnInit {
   }
   getUser() {
     this.userService.getUser(this.accountService.getTokenData().userId).subscribe((data) => {
-      debugger;
       this.userData = data[0];
     });
   }
 
-  logout(){
+  logout() {
     this.accountService.logout();
   }
 

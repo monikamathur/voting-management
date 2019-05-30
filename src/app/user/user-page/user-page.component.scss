@@ -1,23 +1,27 @@
-footer{
+.card {
+    box-shadow: 0 0.0625rem 0.125rem 0 rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    margin-top: 3rem;
 
-	margin-top: 20px;
-	padding-top: 20px;
-}
-.bg__card__navbar{
-	background-color: #000000;
-}
-.bg__card__footer{
-	background-color: #000000 !important;
-}
-#add__new__list{
-    top: -38px;
-    right: 0px;
-}
-.avatar{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:25%;
-    float:left;
-    padding-right:10px;
-}
+    .card-header {
+      padding: 1rem 1.25rem;
+    margin-bottom: 0;
+    color: inherit;
+    background-color: #fff;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-bottom: 0;
+      }
+    }
+  
+
+  
+    .list-group {
+      box-shadow: none;
+    }
+  }
+  

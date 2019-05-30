@@ -16,7 +16,7 @@ export class LoginPageComponent implements OnInit {
     password: new FormControl(''),
   });
   constructor(private accountService: AccountService,
-    private router: Router,  private toastr: ToastrService
+    private router: Router, private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -24,19 +24,18 @@ export class LoginPageComponent implements OnInit {
 
   login() {
 
-    console.log('login', this.loginForm.value);
     this.accountService.login(this.loginForm.value).subscribe((data) => {
       if (data && data['token']) {
-        this.toastr.success('You have loggedin successfully','Success');
+        this.toastr.success('You have loggedin successfully', 'Success');
 
         localStorage.setItem('token', data['token']);
-        if(data['user_type'] == 'admin'){
-        this.router.navigate(['candidate']);
-        }else{
-        this.router.navigate(['vote']);
+        if (data['user_type'] == 'admin') {
+          this.router.navigate(['candidate']);
+        } else {
+          this.router.navigate(['vote']);
         }
       }
-    },(error)=>{
+    }, (error) => {
       this.toastr.error(error.error.message, 'Error');
     });
   }

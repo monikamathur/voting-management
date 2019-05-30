@@ -6,8 +6,8 @@ const { check, validationResult } = require('express-validator/check');
 var User = require('../models/User');
 
 router.get('/', (req, res, next) => {
-  
-  Candidate.find({},(err, candidate) => {
+
+  Candidate.find({}, (err, candidate) => {
     if (err) {
       return res.status(400).send({
         message: "Failed to add candidate."
@@ -35,7 +35,6 @@ router.post('/', [
   newCandidate.candidate_party = req.body.candidate_party;
 
   newCandidate.save((err, candidate) => {
-    console.log("user", candidate)
     if (err) {
       return res.status(400).send({
         message: "Failed to add candidate."
@@ -51,50 +50,47 @@ router.post('/', [
 });
 
 router.put('/vote', [
-    check('candidate_id', 'sdfsdfsf').not().isEmpty(),
-  ], (req, res, next) => {
-    console.log("req.body", req.body);
-  User.find({user_id: req.body.user_id}, (err,user)=>{
+  check('candidate_id', 'sdfsdfsf').not().isEmpty(),
+], (req, res, next) => {
+  User.find({ user_id: req.body.user_id }, (err, user) => {
     if (err) {
       return res.status(400).send({
         message: "Failed to get user"
       });
     }
-    if(!user.length){
+    if (!user.length) {
       return res.status(400).send({
         message: "User not found"
       });
-    }else if(user && !user[0].is_voted){
-      Candidate.update({candidate_id: req.body.candidate_id}, { $inc: { candidate_vote: 1 } },(err, candidate) => {
-        console.log("user", candidate)
+    } else if (user && !user[0].is_voted) {
+      Candidate.update({ candidate_id: req.body.candidate_id }, { $inc: { candidate_vote: 1 } }, (err, candidate) => {
         if (err) {
           return res.status(400).send({
             message: "Failed to vote candidate."
           });
         }
         else {
-          User.update({user_id: req.body.user_id}, { $set: { is_voted: true} },(err, user) => {
-              console.log("user", candidate)
-              if (err) {
-                return res.status(400).send({
-                  message: "Failed to vote candidate."
-                });
-              }
-              else {
-                return res.status(201).send({
-                  message: "vote succesfully."
-                });
-              }
-            })
+          User.update({ user_id: req.body.user_id }, { $set: { is_voted: true } }, (err, user) => {
+            if (err) {
+              return res.status(400).send({
+                message: "Failed to vote candidate."
+              });
+            }
+            else {
+              return res.status(201).send({
+                message: "vote succesfully."
+              });
+            }
+          })
         }
       })
-    }else{
+    } else {
       return res.status(400).send({
         message: "You have already voted"
       });
     }
   })
 
-    // User.create()
-  });
+  // User.create()
+});
 module.exports = router;

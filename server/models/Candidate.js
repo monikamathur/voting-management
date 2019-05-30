@@ -27,7 +27,7 @@ var CandidateSchema = new mongoose.Schema({
         type: Number,
         default: 0
     }
-},{ emitIndexErrors: true });
+}, { emitIndexErrors: true });
 
 var Candidate = mongoose.model('Candidate', CandidateSchema);
 module.exports = Candidate;

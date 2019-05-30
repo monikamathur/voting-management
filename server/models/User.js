@@ -24,7 +24,7 @@ var UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-},{ emitIndexErrors: true });
+}, { emitIndexErrors: true });
 
 UserSchema.methods.setPassword = function (password) {
 
@@ -46,7 +46,6 @@ UserSchema.methods.validPassword = function (password) {
 var User = mongoose.model('User', UserSchema);
 
 var handleE11000 = function (error, res, next) {
-    console.log('oooooooooooooooooooooooooooooooooooo');
     if (error.name === 'MongoError' && error.code === 11000) {
         next(new Error('There was a duplicate key error'));
     } else {
