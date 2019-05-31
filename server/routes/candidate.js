@@ -4,8 +4,10 @@ var mongoose = require('mongoose');
 var Candidate = require('../models/Candidate');
 const { check, validationResult } = require('express-validator/check');
 var User = require('../models/User');
+var auth = require('../middleware');
+var validator = require('../validation')
 
-router.get('/', (req, res, next) => {
+router.get('/', auth.checkToken, auth.isAdmin, (req, res, next) => {
 
   Candidate.find({}, (err, candidate) => {
     if (err) {
@@ -20,12 +22,7 @@ router.get('/', (req, res, next) => {
   // User.create()
 });
 
-router.post('/', [
-  check('candidate_id', 'sdfsdfsf').not().isEmpty(),
-  check('candidate_name', 'sdfsdfsdf').not().isEmpty(),
-  check('candidate_sign', 'sdfsdfsdf').not().isEmpty(),
-  check('candidate_party', 'sdfsdfsdf').not().isEmpty(),
-], (req, res, next) => {
+router.post('/',   validator.createValidationFor('addCandidates'), validator.checkValidationResult, (req, res, next) => {
   let newCandidate = new Candidate();
 
   // intialize newUser object with request data 
@@ -49,9 +46,7 @@ router.post('/', [
   // User.create()
 });
 
-router.put('/vote', [
-  check('candidate_id', 'sdfsdfsf').not().isEmpty(),
-], (req, res, next) => {
+router.put('/vote', auth.checkToken,validator.createValidationFor('vote'), validator.checkValidationResult, (req, res, next) => {
   User.find({ user_id: req.body.user_id }, (err, user) => {
     if (err) {
       return res.status(400).send({

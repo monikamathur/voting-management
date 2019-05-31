@@ -15,6 +15,9 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Username" autocomplete="username" required
                       name="user_id" formControlName="user_id">
+                      <div *ngIf="loginForm.controls['user_id'].invalid && (loginForm.controls['user_id'].dirty || loginForm.controls['user_id'].touched || submitted)" class="invalid-feedback">
+                        <div *ngIf="loginForm.controls['user_id'].errors.required">Field is required</div>
+                    </div>
                   </div>
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
@@ -22,10 +25,13 @@
                     </div>
                     <input type="password" class="form-control" placeholder="Password" autocomplete="current-password"
                       required name="password" formControlName="password">
+                      <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched || submitted)" class="invalid-feedback">
+                        <div *ngIf="loginForm.controls['password'].errors.required">Field is required</div>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="submit" class="btn btn-primary px-4">Login</button>
+                      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary px-4">Login</button>
                     </div>
                   </div>
                 </form>

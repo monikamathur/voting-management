@@ -3,8 +3,10 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('./../models/User');
 const { check, validationResult } = require('express-validator/check');
+var auth = require('../middleware');
+var validator = require('../validation')
 
-router.post('/', [
+router.post('/',  auth.checkToken, auth.isAdmin,validator.createValidationFor('addUser'), validator.checkValidationResult, [
   check('user_id', 'sdfsdfsf').not().isEmpty(),
   check('user_name', 'sdfsdfsdf').not().isEmpty(),
   check('password', 'Your password must be atleast 5 characters').not().isEmpty()
@@ -33,7 +35,7 @@ router.post('/', [
   // User.create()
 });
 
-router.get('/:id', function (req, res, next) {
+router.get('/:id', auth.checkToken, validator.createValidationFor('getOneUser'), validator.checkValidationResult, function (req, res, next) {
   User.find({ user_id: req.params.id }, function (err, post) {
     if (err) {
       return res.status(400).send({
@@ -44,7 +46,7 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
-router.get('/', function (req, res, next) {
+router.get('/', auth.checkToken, auth.isAdmin, function (req, res, next) {
   User.find({ user_type: 'customer' }, { 'user_name': true, 'user_id': true, 'is_voted': true }, function (err, post) {
     if (err) {
       return res.status(400).send({

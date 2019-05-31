@@ -35,7 +35,7 @@ export class VoteComponent implements OnInit {
   voteCandidates(candidate) {
     candidate['user_id'] = this.accountService.getTokenData().userId;
     this.candidatesService.voteCandidates(candidate).subscribe((data) => {
-      this.toastr.success('You have voted successfully', 'Success');
+      this.toastr.success('Your vote has been submitted successfully', 'Success');
       this.getUser();
     }, (err) => {
       this.toastr.error(err.error.message, 'Error');

@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('./../models/User');
-const { check, validationResult } = require('express-validator/check');
 let jwt = require('jsonwebtoken');
 const config = require('../config');
+var validator = require('../validation')
 
-router.post('/login', (req, res) => {
+router.post('/login',validator.createValidationFor('login'), validator.checkValidationResult, (req, res) => {
     User.findOne({ user_id: req.body.user_id }, function (err, user) {
         if (user === null) {
             return res.status(400).send({

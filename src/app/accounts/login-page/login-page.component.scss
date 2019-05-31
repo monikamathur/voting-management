@@ -3,3 +3,26 @@
     .voteImg{
         width: 100%;
     }
+    .invalid-feedback{
+        color: #cc0033;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 15px;
+        margin: 5px 0 0;
+      }
+      
+      .input-group .invalid-feedback {
+        display: none;
+      }
+      
+      
+      /* Error Styling */
+      
+      .ng-invalid label {
+        color: #cc0033;
+      }
+
+      .ng-invalid .invalid-feedback {
+        display: inline-block;
+      }
+      
