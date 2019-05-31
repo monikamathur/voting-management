@@ -6,11 +6,9 @@ const { check, validationResult } = require('express-validator/check');
 var auth = require('../middleware');
 var validator = require('../validation')
 
-router.post('/',  auth.checkToken, auth.isAdmin,validator.createValidationFor('addUser'), validator.checkValidationResult, [
-  check('user_id', 'sdfsdfsf').not().isEmpty(),
-  check('user_name', 'sdfsdfsdf').not().isEmpty(),
-  check('password', 'Your password must be atleast 5 characters').not().isEmpty()
-], (req, res, next) => {
+// Api for add user 
+router.post('/',  auth.checkToken, auth.isAdmin,validator.createValidationFor('addUser'), validator.checkValidationResult,
+ (req, res, next) => {
   let newUser = new User();
 
   // intialize newUser object with request data 
@@ -32,9 +30,9 @@ router.post('/',  auth.checkToken, auth.isAdmin,validator.createValidationFor('a
       });
     }
   })
-  // User.create()
 });
 
+// Api for get user by id
 router.get('/:id', auth.checkToken, validator.createValidationFor('getOneUser'), validator.checkValidationResult, function (req, res, next) {
   User.find({ user_id: req.params.id }, function (err, post) {
     if (err) {
@@ -46,6 +44,7 @@ router.get('/:id', auth.checkToken, validator.createValidationFor('getOneUser'),
   });
 });
 
+// Api for get list of all
 router.get('/', auth.checkToken, auth.isAdmin, function (req, res, next) {
   User.find({ user_type: 'customer' }, { 'user_name': true, 'user_id': true, 'is_voted': true }, function (err, post) {
     if (err) {

@@ -29,9 +29,9 @@ var CandidateSchema = new mongoose.Schema({
     }
 }, { emitIndexErrors: true });
 
-var Candidate = mongoose.model('Candidate', CandidateSchema);
-module.exports = Candidate;
-
+/**
+ * handleE11000 is a method to retuen an error if duplicate entry
+ */
 var handleE11000 = function (error, res, next) {
     if (error.name === 'MongoError' && error.code === 11000) {
         next(new Error('There was a duplicate key error'));
@@ -43,3 +43,6 @@ CandidateSchema.post('insertMany', handleE11000);
 CandidateSchema.post('save', handleE11000);
 CandidateSchema.post('update', handleE11000);
 CandidateSchema.post('findOneAndUpdate', handleE11000);
+
+var Candidate = mongoose.model('Candidate', CandidateSchema);
+module.exports = Candidate;

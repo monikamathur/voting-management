@@ -6,7 +6,8 @@ let jwt = require('jsonwebtoken');
 const config = require('../config');
 var validator = require('../validation')
 
-router.post('/login',validator.createValidationFor('login'), validator.checkValidationResult, (req, res) => {
+// login api
+router.post('/login', validator.createValidationFor('login'), validator.checkValidationResult, (req, res) => {
     User.findOne({ user_id: req.body.user_id }, function (err, user) {
         if (user === null) {
             return res.status(400).send({

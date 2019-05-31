@@ -7,8 +7,8 @@ var User = require('../models/User');
 var auth = require('../middleware');
 var validator = require('../validation')
 
+// Api for get all Candidates
 router.get('/', auth.checkToken, auth.isAdmin, (req, res, next) => {
-
   Candidate.find({}, (err, candidate) => {
     if (err) {
       return res.status(400).send({
@@ -19,9 +19,9 @@ router.get('/', auth.checkToken, auth.isAdmin, (req, res, next) => {
       return res.status(201).send(candidate);
     }
   })
-  // User.create()
 });
 
+// Api for Add all Candidate
 router.post('/',   validator.createValidationFor('addCandidates'), validator.checkValidationResult, (req, res, next) => {
   let newCandidate = new Candidate();
 
@@ -43,9 +43,9 @@ router.post('/',   validator.createValidationFor('addCandidates'), validator.che
       });
     }
   })
-  // User.create()
 });
 
+// Api for increment number of vote by 1
 router.put('/vote', auth.checkToken,validator.createValidationFor('vote'), validator.checkValidationResult, (req, res, next) => {
   User.find({ user_id: req.body.user_id }, (err, user) => {
     if (err) {
@@ -85,7 +85,5 @@ router.put('/vote', auth.checkToken,validator.createValidationFor('vote'), valid
       });
     }
   })
-
-  // User.create()
 });
 module.exports = router;

@@ -26,6 +26,10 @@ var UserSchema = new mongoose.Schema({
     }
 }, { emitIndexErrors: true });
 
+/**
+ * setPassword is a method to convert user password into 
+ * salt and hash
+ */
 UserSchema.methods.setPassword = function (password) {
 
     // creating a unique salt for a particular user 
@@ -37,14 +41,19 @@ UserSchema.methods.setPassword = function (password) {
         1000, 64, `sha512`).toString(`hex`);
 };
 
+/**
+ * validPassword is a method to match user password with hash  password 
+ * and return true or false according to the condition
+ */
 UserSchema.methods.validPassword = function (password) {
     var hash = crypto.pbkdf2Sync(password,
         this.salt, 1000, 64, `sha512`).toString(`hex`);
     return this.hash === hash;
 };
 
-var User = mongoose.model('User', UserSchema);
-
+/**
+ * handleE11000 is a method to retuen an error if duplicate entry
+ */
 var handleE11000 = function (error, res, next) {
     if (error.name === 'MongoError' && error.code === 11000) {
         next(new Error('There was a duplicate key error'));
@@ -57,4 +66,7 @@ UserSchema.post('save', handleE11000);
 UserSchema.post('update', handleE11000);
 UserSchema.post('findOneAndUpdate', handleE11000);
 UserSchema.post('insertMany', handleE11000);
+
+var User = mongoose.model('User', UserSchema);
+
 module.exports = User;

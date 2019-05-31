@@ -5,6 +5,9 @@ var userData = require('./user.json');
 var candidateData = require('./candidates.json');
 var async = require("async");
 
+/**
+ * Adding default users
+*/
 async.forEachOf(userData, (value, callback) => {
     let newUser = new User();
     newUser.user_name = value.user_name;
@@ -18,9 +21,11 @@ async.forEachOf(userData, (value, callback) => {
 
 }, err => {
     if (err) console.error(err.message);
-    // configs is now a map of JSON data
 });
 
+/**
+ * Adding default Candidates
+ */
 Candidate.insertMany(candidateData, (err, res) => {
     if (err) console.error(err.message);
     console.log("inserted");
