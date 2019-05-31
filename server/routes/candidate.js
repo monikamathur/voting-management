@@ -8,7 +8,7 @@ var auth = require('../middleware');
 var validator = require('../validation')
 
 // Api for get all Candidates
-router.get('/', auth.checkToken, auth.isAdmin, (req, res, next) => {
+router.get('/', auth.checkToken, (req, res, next) => {
   Candidate.find({}, (err, candidate) => {
     if (err) {
       return res.status(400).send({
